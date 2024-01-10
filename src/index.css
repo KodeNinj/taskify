@@ -52,6 +52,7 @@
 	justify-content: space-around;
 	flex-wrap: wrap;
 }
+
 .items {
 	width: 40%;
 	padding: 16px;
@@ -59,12 +60,21 @@
 	background-color: red;
 	margin-bottom: 16px;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 }
-.items p{
-  width: 70%;
+.items p {
+	width: 70%;
 }
-.items .icons{
-  display: flex;
-  gap: 10px;
+.items .icons {
+	display: flex;
+	gap: 10px;
+}
+@media screen and (max-width: 700px) {
+	.tasksContainer {
+		flex-direction: column;
+	}
+	.items {
+		width: 100%;
+	}
 }
