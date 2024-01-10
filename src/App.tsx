@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import InputField from "./components/InputField";
+import { TodoType } from "./Model";
+import TodoListItems from "./components/TodoListItems";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => {
+	const [typedValue, settypedValue] = useState<string>("");
+	const [TodoList, setTodoList] = useState<Array<TodoType>>([]);
+	useEffect(() => {
+		console.log(TodoList);
+	}, [TodoList]);
+
+	// handle addition to todoList
+	const handleAdd = () => {
+		if (typedValue) {
+			setTodoList([ 
+				...TodoList,
+				{ id: Date.now(), task: typedValue, isDone: false },
+			]);
+		}
+	};
+
+	return (
+		<div className="page">
+			<h3 className="logo">Takify</h3>
+			<InputField
+				typedValue={typedValue}
+				settypedValue={settypedValue}
+				handleAdd={handleAdd}
+			/>
+			<section className="tasksContainer">
+				{TodoList?.map((eachItem, index) => {
+					return (
+						<TodoListItems
+							TodoList={TodoList}
+							eachItem={eachItem}
+							index={index}
+							key={eachItem.task}
+							setTodoList={setTodoList}
+						/>
+					);
+				})}
+			</section>
+		</div>
+	);
+};
 
 export default App;
