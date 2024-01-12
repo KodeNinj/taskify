@@ -13,7 +13,7 @@ const App: React.FC = () => {
 	// handle addition to todoList
 	const handleAdd = () => {
 		if (typedValue) {
-			setTodoList([ 
+			setTodoList([
 				...TodoList,
 				{ id: Date.now(), task: typedValue, isDone: false },
 			]);
@@ -22,7 +22,7 @@ const App: React.FC = () => {
 
 	return (
 		<div className="page">
-			<h3 className="logo">Takify</h3>
+			<h3 className="logo">Taskify</h3>
 			<InputField
 				typedValue={typedValue}
 				settypedValue={settypedValue}
