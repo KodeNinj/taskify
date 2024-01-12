@@ -28,18 +28,22 @@ const TodoListItems = ({ TodoList, setTodoList, index, eachItem }: Props) => {
 	const handleDeletion = (index: number) => {
 		setTodoList(TodoList.filter((e) => e.id !== index));
 	};
-	const handleEdit = (e: React.FormEvent, id: number)=>{
+	const handleEdit = (e: React.FormEvent, id: number) => {
 		e.preventDefault();
-		setTodoList(TodoList.map((eachitem)=>(
-			eachitem.id === id ? {...eachitem, task: editTodo}: eachitem
-		)))
-			setedit(!edit)
-	}
+		setTodoList(
+			TodoList.map((eachitem) =>
+				eachitem.id === id ? { ...eachitem, task: editTodo } : eachitem
+			)
+		);
+		setedit(!edit);
+	};
 	return (
 		<form className="items" onSubmit={(e) => handleEdit(e, eachItem.id)}>
 			{edit ? (
 				<input
 					type="text"
+					className="editmode"
+					autoFocus
 					value={editTodo}
 					onChange={(e) => {
 						seteditTodo(e.target.value);
